@@ -1,0 +1,61 @@
+#
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @               ---------                 @
+# @				  LVM MGMT					@
+# @               ---------                 @
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#
+# Logical Volumes Management
+# Flow Order:
+# Physical Volumes -> Volume Groups -> Logical Volumes
+
+# Create physical volumes
+pvcreate /dev/sdb /dev/sdc
+
+# Create Volume Group
+vgcreate vg00 /dev/sdb /dev/sdc
+
+# Create Logical Volume
+# -L = Fixed Size; -l = percentage size (use when you don't know remaining free size)
+lvcreate -n vol_projects -L 10g vg00
+lvcreate -n vol_backups -l 100%FREE vg00
+
+# List Objects
+pvs
+vgs
+lvs
+
+# Display Info about objects 
+pvdisplay /dev/sdb
+vgdisplay vg00
+lvdisplay vg00/vol_projects
+
+# Add filesystem to volumes
+mkfs.ext4 /dev/vg00/vol_projects
+
+# Resize Logical Volumes 
+# -2.5G to projects, +100%FREE to backups. without +/-, would set to 2.5G total size
+lvreduce -L -2.5G -r /dev/vg00/vol_projects
+lvextend -l +100%FREE -r /dev/vg00/vol_backups
+
+# Extend Volume Group (must make PV for it, first!)
+pvcreate /dev/sdd
+vgextend vg00 /dev/sdd
+
+#### BOOT ON DEMAND ####
+
+# determine blkid (sample output below)
+sudo blkid /dev/vg00/vol_projects
+/dev/vg00/vol_projects: UUID="28573e37-573k-5827-d385-3gu571da5n72" TYPE="ext4"
+
+UUID="28573e37-573k-5827-d385-3gu571da5n72"
+# Create mount points for LVs
+mkdir /home/projects
+mkdir /home/backups
+
+# Insert entry into the file table (/etc/fstab)
+UUID="28573e37-573k-5827-d385-3gu571da5n72" TYPE="ext4" /home/projects	ext 4	defaults 0 0 # /dev/vg00/vol_projects: 
+
+# Save changes and mount!
+mount -a
+mount | grep home

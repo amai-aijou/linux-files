@@ -1,0 +1,104 @@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @                                         @
+# @				  VIM NOTES					@
+# @                                         @
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+# searches for next instance of letter x in the same line
+fx
+
+#-------------------------
+File Copying and Movement
+#-------------------------#
+
+
+#Yank Operator & Scope	Resulting Action
+yw	yank word forward
+yb	yank word backward
+y$	yank from cursor to end of line (same as Y)
+yL	yank from current line to end of screen
+yG	yank from current line to end of file
+y)	yank from cursor to start of sentence
+y(	yank from cursor to end of sentence
+yy	yank complete line
+
+# Yank entire File (+ adds to clipboard!)
+:%y+
+
+# v to enter visual mode. y to yank text (copy to clipboard). p to "put" (paste)
+v	y	p
+
+#highlight text with #. undo highlight by removing hl
+:set nohl
+
+#add text to register (persists until file is closed)
+"xyy
+
+  #check current registers
+  :reg
+#replace single characters with r. change multiple characters with cw/ce/c$
+
+#replace a character with x
+rx
+
+#run COMMAND_NAME outside vim, then return back (great for checking other files!)
+:!COMMAND_NAME
+
+#
+:r ~/.vimrc
+
+#delete to end of word, line, document
+dw	d$	dg
+
+#delete to specific letter. delete to specific letter, *and* that letter
+dtx	
+dfx
+
+#adds or removes lines to vim document (tildes at end)
+CTRL-e	CTRL-y
+
+#save and quit. save without quit (the cool way)
+#ctrl-c is same as escape, just faster to type!
+ctrl-c	ZZ	
+ctrl-c 	ZQ
+
+
+#set number of colors to 256 (default 8). normally only available in GUI
+#but modern CLI can usually handle. Can be set in ~/.vimrc
+:set t_Co=256
+
+#search and replace all incidents of x(similar to sed)
+#% = full file	s=replace	g=all occurences	[without % will only do same line]
+:%s/old/new/g
+
+  #adding c will "check", and prompt you each time for:
+  #y/n/a/q/l	yes/no/all/quit/last (quit after this one)
+  :%s/old/new/gc
+
+#repeat last command in EX mode
+@:
+
+#open multiple files (switch with :n/:N)
+vim file1 file2 file3
+
+  #buffer shows all currently-open files
+  :buffers
+  #opens below menu. #=open in background, %a=currently editing
+    #1 #	"file1"		line 1
+    #2 %a	"file2"		line 1
+    #3	    "file3"		line 0
+  #open file number 3
+  :buffer 3 
+
+#insert unicode characters (must be in visual mode)
+#probably only works with numpad...you need to buy one soon!
+ctrl+v	u00B5
+
+# Vim short-hand
+:help key-notations
+<C-r> = Ctrl + r
+<CR>  = Carriage Return (nerdy way to say "hit enter")
+<C-r>=strftime('%F')<CR>
+

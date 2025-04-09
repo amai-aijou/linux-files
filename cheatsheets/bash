@@ -1,0 +1,84 @@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @               ---------                 @
+# @				  BASH NOTES				@
+# @               ---------                 @
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#
+##COMMONLY USED BASH COMMANDS##
+
+#Typing them out helps you remember them!
+
+#Add a comment to commands you may need to retrieve later. Makes them easy to find with CTRL-r
+some command -abc #remember-me
+
+# Create tarball with the corresponding compression
+tar czf myfiles.tar.gz file[0-9]
+tar cjf myfiles.tar.bz2 file[0-9]
+tar cJf myfile.tar.xz file[0-9]
+
+#view tarball contents (must be uncompressed)
+tar tvf myfiles.tar
+vi myfiles.tar
+
+#switch to previous directory
+cd -
+
+#Find and delete overly permissive files
+find /home/user -perm 777 -exec rm '{}' +
+
+# Delete history line 999, then write to $HISTFILE (~/.bash_history by default)
+history -d 999
+history -w
+
+# Allows you to peek into the filesystems installed on unmounted disks
+lsblk -fs
+
+--------------------------------------------
+# OPERATIONS
+
+# replace all instances of x with y, then revert. semi-colon allows for multiple sed commands! 
+sed 's/x/y/g;s/y/x/g'
+
+# print selected lines (-n + p = print only matching lines)
+# print lines 1-5 with -n 1,5p (start, stop, print)
+# "-n" suppresses output, "p" prints
+sed -n '/^Jun 8/ p' | sed -n 1,5p
+
+# delete all lines starting with # or |
+# carat (^) denotes start of line
+sed '/^
+
+--------------------------------------------
+# SYSADMIN
+
+# view all installed packages. Remember, dpkg/rpm are low-level installers. apt/yum are high level
+# low level is used for direct install. High level works with repos and can list dependencies etc.
+rpm -qa
+
+# Determine which package installed a given file
+rpm -qf
+
+# Searches yum/dnf repo to show what package/s provide the filename in question. use */ to broaden search!
+yum whatprovides "*/python-example.file"
+
+#search for a package, provide info about it, install. remove it. remove all orphaned packages. remove all cached packages.
+dnf search vim
+dnf info vim 	#hit [tab] to autocomplete
+dnf install -y vim; dnf remove vim -y; dnf autoremove -y; dnf clean packages
+
+# Setting special file attributes. This can be used to prevent files from being modified or deleted (immutable), or only able to append
+sudo chattr +i nerv.txt
+sudo lsattr | grep -i "nerv"
+----i----------------- ./nerv.txt
+sudo chattr -i nerv.txt
+sudo lsattr | grep -i "nerv"
+---------------------- ./nerv.txt
+
+# Set limits for users, including cpu, memory, filesize limit, etc
+/etc/security/limits.conf
+
+# Kill all processes by a specific owner (-u), group (-G), or all processes sharing PPID (-P)
+pkill -[uGP] 1000
+
+# searches for processes. Can be used to do a "dry run" of a pkill, first
+pgrep -l -u $USER

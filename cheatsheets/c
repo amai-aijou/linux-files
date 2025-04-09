@@ -1,0 +1,49 @@
+# C Cheatsheet
+#
+
+C programs rely on three key features:
+
+  1. "Directives"		Editing commands that modify the program prior to compilation (#include statements)
+  2. "Functions"		Named blocks of executable code (main)
+  3. "Statements"		Commands to be performed when program is run
+
+Variable declarations can be combined:
+
+  int height, length, width, volume; //a whole-number integer up to 2.1 billion
+  float profit, loss: 				 //supports decimel point, but float may contain rounding errors!
+
+Declarations must come before Statements; however, C99 allows them to be mixed up (like modern programming)
+Append the letter f to Float numbers, i.e: profit = 2150.48f;
+
+
+Providing a value to a variable for the first time is called an "initializer"; multiple variables may be declared
+initializers only apply to one variable (int height, length = 10; does not work)
+int height = 8, length = 12, width = 10;
+
+"Wherever a value is needed, any expression of the same type will do."
+-C General Principle
+
+"printf" = print formatted (cout)
+  %d = whole integer
+  %f = float
+    %.2f\n" = read decimel to two places (x.xx)
+  %s = string
+
+"scanf"  = read  formatted (cin)
+  ("%d", &someVar); //
+"Macro Definition": used to name constants; can be an expression
+	#define INCHES_PER_POUND 166
+	#definte RECIPROCAL_OF_PI (1.0f / 3.14159f)
+
+C will truncate the result when two integers are divided. use float instead:
+5.0f / 9.0f
+
+"Identifier"	Variables, functions, macros, etc. 
+				Case Sensitive.May contain letters, digits, underscores.
+				Must begin with a letter or underscore* 
+				*C99 allows for certain universal char. names
+				best_practice, alsoBestPractice
+
+C is built on "tokens": groups of chars that can't be split up without changing their meaning
+  The following statement has seven tokens: 
+    printf	(	"Height: %d\n"	,	heig	)	;
