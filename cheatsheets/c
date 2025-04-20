@@ -24,13 +24,9 @@ int height = 8, length = 12, width = 10;
 -C General Principle
 
 "printf" = print formatted (cout)
-  %d = whole integer
-  %f = float
-    %.2f\n" = read decimel to two places (x.xx)
-  %s = string
-
 "scanf"  = read  formatted (cin)
-  ("%d", &someVar); //
+  ("%d", &someVar); 
+
 "Macro Definition": used to name constants; can be an expression
 	#define INCHES_PER_POUND 166
 	#definte RECIPROCAL_OF_PI (1.0f / 3.14159f)
@@ -45,5 +41,49 @@ C will truncate the result when two integers are divided. use float instead:
 				best_practice, alsoBestPractice
 
 C is built on "tokens": groups of chars that can't be split up without changing their meaning
-  The following statement has seven tokens: 
-    printf	(	"Height: %d\n"	,	heig	)	;
+  The following statement has seven tokens, separated by tabs: 
+    printf	(	"Height: %d\n"	,	height	)	;
+
+#####################################
+# Chapter 3 - Formatted Input/Output
+#####################################
+
+"conversion specification"	placeholder representing a value to be filled during print, ie %d
+	"%d"   = integer (Decimel base 10)
+	"%.1f" = float (display 1 decimel point)
+	"%e"   = scientific notation (Exponential format)
+	"%s"   = string
+
+	"%m.pX / %-m.pX" (m and p are integer constants and X is a letter)
+		"m - minimum field width" 	minimum amount to print
+				%3d: "123", " 12", "12345" | %-3d: "123", "12 ", "12345"
+		"p - precision"		minimum digits/decimel points to display
+				%d = %.1d; %.2d: 22; %.3d: 022;			
+				%g: displays a float in either %e or Fixed Decimel, depending on size
+					p indicates max number of significant digits to display
+				    doesn't show trailing zeros.  will drop decimel point if blank
+					dynamic, switches from fixed decimel to exponential when necessary
+		"X - conversion specifier"		type: %d, %e, %s, etc. (see above)
+
+"Escape Sequences"
+	\a Alert \b Backspace \n New line \t Horizontal Tab \" quotation mark
+	%%: prints percent sign
+
+"Scanf under the hood"
+	Scanf will initially ignore whitespace/linebreaks during first format string match.
+    After first match, it willl continue reading until it reads the first character inconsistent with
+    the search string. It is here that whitespace begins to matter, as it is a non-digit character.
+    Scanf then drops that from the string, and will add it to the *next* search (very important).
+    A second search could attempt to start with an incorrect character if "4abc" is entered as an "int"
+
+	"%d/%d"
+	*5/*96 input (* is space) matches 5 to the first. it then drops the slash, uses it in its next match,
+	which is a /, so it can continue, then stops at *. it starts at * again, drops the *, and matches 96
+	
+	*5*/*96 input would match 5 to the first, drop the space...then attempt to match the space to the 
+	slash. Unlike conversion specifiers, which ignore beginning whitespace, this would not match, so
+	it gets put back. then, */*96 gets run through the second %d, creating bad data. 
+
+	Note: if the second format string was not /, scanf would still start the next match with /, which 
+	would generate an error!
+ 	
