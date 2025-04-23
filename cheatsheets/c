@@ -91,3 +91,62 @@ C is built on "tokens": groups of chars that can't be split up without changing 
 #####################################
 # Chapter 4
 #####################################
+
+"Expressions" Formulas that show how to compute a value
+	variables, constants. both "b" and "b*c" are expressions
+"Operators"
+	/: when both operands are integers, fractions are truncated. 2/1=0, not 1
+	%: modulo operator only works with integers
+	Don't cross the streams...or use zero as the right operator (2/0, 2%0)
+	"C89": -7/9 might be -1 or -2. -9%7 might be -2 or 5. Strange behavior
+	"C99": Always truncates and rounds down (always -1). More standardized
+
+"Implementation-Defined Behavior"
+	C deliberately leaves parts of the language unspecified and allows the implementation - the software
+		that allows it to compile and run - to specify behavior. One of C's goals is efficiency, which means
+		matching the way the hardware behaves. Make programs agnostic whenver possible to prevent issues!
+	
+	C89: If either integer is negative, the result may be rounded up OR rounded down in C89, depending on implementation.
+	C99: The integer will always be rounded down.	
+Older Compilers are sometimes limited to 32,767 for an Integer. Use Scanf("%1d%1d") to read numbers one at a time
+
+"Simple Assignment"
+	v=e, where e becomes type v. An easy example:
+
+	int i;
+	float f;
+	i = 72.99f	//i is now 72
+	f = 136;	//f is now 136.0
+	f = i = 33.f; //f is now 33.
+	
+	i = 1;
+	k = 1 + (j = i); //not recommended, but valid. j=1, 1+1, k = 2;
+
+"lvalue"
+	Represents an object stored in computer memory, not a constant or result of a computation.
+	Variables are l-values. Expressions are not.
+	Assignment operator requires an lvalue 
+
+"Compound Assignments"
+	i += 2; //same as i = i + 2;
+	Adds the value of the right operand to the variable on the left.
+	-=	*=	/=	%=
+	i += j += k; //this means i += (j += k)
+
+"Increment/Decrement Operators"
+	++i (prefix) and i++ (postfix) are Increment; --i/i-- are Decrement.
+	Have higher precedence than unary plus/minus, and are left-associative.	
+	printf("i is %d\n", ++i);	//prints "i is 2"
+	printf("i is %d\n", i++);	//prints "i is 1", then increments to 2 *after*
+
+Avoid "undefined behavior" by separating statements that may be evaluated different ways
+	i = 2;
+	j = i * i++;	//will i or i++ be evaluated before? 
+	C doesn't define this, it all depends on the compiler!
+
+"Fetching" a variable mean retrieving it's value from memory. A later change will not
+	affect the fetched value, which is typically stored in the "register" in the CPU
+
+C allows *any* expression to be used as a statement if you append a semi-colon.
+	during i++; the statement executes, and the new value is fetched. its value is discarded,
+	though that new value remains permanent as it will be fetched from memory.
