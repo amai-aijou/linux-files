@@ -150,3 +150,45 @@ Avoid "undefined behavior" by separating statements that may be evaluated differ
 C allows *any* expression to be used as a statement if you append a semi-colon.
 	during i++; the statement executes, and the new value is fetched. its value is discarded,
 	though that new value remains permanent as it will be fetched from memory.
+
+
+#####################################
+# Chapter 5
+#####################################
+
+"Selection Statements" 	#if, switch
+	Allow a program to select a particular execution path from a set of alternatives
+"Iteration Statements" 	#while, do, for
+	Support iteration (looping)
+"Jump statements" 		#break, continue, goto, return
+	Cause an unconditional jump to some other place in the program
+"Compound statement"	#else (see Chapter 6 for more)
+	Groups several statements into a single statement
+"Null Statement"		#empty semi-solon (;)
+	Performs no action
+
+"Relational and Equiality operators" 
+	always return integer values: 0 (false), or 1 (true)
+
+	i >=j is equal to 0, 1, or 2, depending on whether i is less than,
+		greater than, or equal to j. this isn't recommended however as it makes
+		programs hard to understand
+
+"Logical Operators"
+	!	logical negation
+	&&	logical and
+	||	logical or
+
+!exp: 			has the value 1 if expr has the value 0
+exp1 && exp2: 	has the value 1 if the values are both non-zero.
+exp1 || exp2:	has the value 1 if either (or both) has a non-zero value
+	*In all other cases, these operators produce 0*
+
+&&/||: if left is non-zero, they will "short-circuit"
+	Neither will look at the right operators. && will be marked false, || true
+	i > 0 && ++j > 0 will not increment j if i=0
+
+"else" executes only when the "if" expression is 0 (aka not true)
+
+
+
