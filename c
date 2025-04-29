@@ -1,0 +1,251 @@
+# C Cheatsheet
+#
+
+C programs rely on three key features:
+
+  1. "Directives"		Editing commands that modify the program prior to compilation (#include statements)
+  2. "Functions"		Named blocks of executable code (main)
+  3. "Statements"		Commands to be performed when program is run
+
+Variable declarations can be combined:
+
+  int height, length, width, volume; //a whole-number integer up to 2.1 billion
+  float profit, loss: 				 //supports decimel point, but float may contain rounding errors!
+
+Declarations must come before Statements; however, C99 allows them to be mixed up (like modern programming)
+Append the letter f to Float numbers, i.e: profit = 2150.48f;
+
+
+Providing a value to a variable for the first time is called an "initializer"; multiple variables may be declared
+initializers only apply to one variable (int height, length = 10; does not work)
+int height = 8, length = 12, width = 10;
+
+"Wherever a value is needed, any expression of the same type will do."
+-C General Principle
+
+"printf" = print formatted (cout)
+"scanf"  = read  formatted (cin)
+  ("%d", &someVar); 
+
+"Macro Definition": used to name constants; can be an expression
+	#define INCHES_PER_POUND 166
+	#definte RECIPROCAL_OF_PI (1.0f / 3.14159f)
+
+C will truncate the result when two integers are divided. use float instead:
+5.0f / 9.0f
+
+"Identifier"	Variables, functions, macros, etc. 
+				Case Sensitive.May contain letters, digits, underscores.
+				Must begin with a letter or underscore* 
+				*C99 allows for certain universal char. names
+				best_practice, alsoBestPractice
+
+C is built on "tokens": groups of chars that can't be split up without changing their meaning
+  The following statement has seven tokens, separated by tabs: 
+    printf	(	"Height: %d\n"	,	height	)	;
+
+#####################################
+# Chapter 3 - Formatted Input/Output
+#####################################
+
+"conversion specification"	placeholder representing a value to be filled during print, ie %d
+	"%d"   = integer (Decimel base 10)
+	"%.1f" = float (display 1 decimel point)
+	"%e"   = scientific notation (Exponential format)
+	"%s"   = string
+
+	"%m.pX / %-m.pX" (m and p are integer constants and X is a letter)
+		"m - minimum field width" 	minimum amount to print
+				%3d: "123", " 12", "12345" | %-3d: "123", "12 ", "12345"
+		"p - precision"		minimum digits/decimel points to display
+				%d = %.1d; %.2d: 22; %.3d: 022;			
+				%g: displays a float in either %e or Fixed Decimel, depending on size
+					p indicates max number of significant digits to display
+				    doesn't show trailing zeros.  will drop decimel point if blank
+					dynamic, switches from fixed decimel to exponential when necessary
+		"X - conversion specifier"		type: %d, %e, %s, etc. (see above)
+
+"Escape Sequences"
+	\a Alert \b Backspace \n New line \t Horizontal Tab \" quotation mark
+	%%: prints percent sign
+
+"Scanf under the hood"
+	Scanf will initially ignore whitespace/linebreaks during first format string match.
+    After first match, it willl continue reading until it reads the first character inconsistent with
+    the search string. It is here that whitespace begins to matter, as it is a non-digit character.
+    Scanf then drops that from the string, and will add it to the *next* search (very important).
+    A second search could attempt to start with an incorrect character if "4abc" is entered as an "int"
+
+	"%d/%d"
+	*5/*96 input (* is space) matches 5 to the first. it then drops the slash, uses it in its next match,
+	which is a /, so it can continue, then stops at *. it starts at * again, drops the *, and matches 96
+	
+	*5*/*96 input would match 5 to the first, drop the space...then attempt to match the space to the 
+	slash. Unlike conversion specifiers, which ignore beginning whitespace, this would not match, so
+	it gets put back. then, */*96 gets run through the second %d, creating bad data. 
+
+	Note: if the second format string was not /, scanf would still start the next match with /, which 
+	would generate an error!
+ 	
+
+#####################################
+# Chapter 4
+#####################################
+
+"Expressions" Formulas that show how to compute a value
+	variables, constants. both "b" and "b*c" are expressions
+"Operators"
+	/: when both operands are integers, fractions are truncated. 2/1=0, not 1
+	%: modulo operator only works with integers
+	Don't cross the streams...or use zero as the right operator (2/0, 2%0)
+	"C89": -7/9 might be -1 or -2. -9%7 might be -2 or 5. Strange behavior
+	"C99": Always truncates and rounds down (always -1). More standardized
+
+"Implementation-Defined Behavior"
+	C deliberately leaves parts of the language unspecified and allows the implementation - the software
+		that allows it to compile and run - to specify behavior. One of C's goals is efficiency, which means
+		matching the way the hardware behaves. Make programs agnostic whenver possible to prevent issues!
+	
+	C89: If either integer is negative, the result may be rounded up OR rounded down in C89, depending on implementation.
+	C99: The integer will always be rounded down.	
+Older Compilers are sometimes limited to 32,767 for an Integer. Use Scanf("%1d%1d") to read numbers one at a time
+
+"Simple Assignment"
+	v=e, where e becomes type v. An easy example:
+
+	int i;
+	float f;
+	i = 72.99f	//i is now 72
+	f = 136;	//f is now 136.0
+	f = i = 33.f; //f is now 33.
+	
+	i = 1;
+	k = 1 + (j = i); //not recommended, but valid. j=1, 1+1, k = 2;
+
+"lvalue"
+	Represents an object stored in computer memory, not a constant or result of a computation.
+	Variables are l-values. Expressions are not.
+	Assignment operator requires an lvalue 
+
+"Compound Assignments"
+	i += 2; //same as i = i + 2;
+	Adds the value of the right operand to the variable on the left.
+	-=	*=	/=	%=
+	i += j += k; //this means i += (j += k)
+
+"Increment/Decrement Operators"
+	++i (prefix) and i++ (postfix) are Increment; --i/i-- are Decrement.
+	Have higher precedence than unary plus/minus, and are left-associative.	
+	printf("i is %d\n", ++i);	//prints "i is 2"
+	printf("i is %d\n", i++);	//prints "i is 1", then increments to 2 *after*
+
+Avoid "undefined behavior" by separating statements that may be evaluated different ways
+	i = 2;
+	j = i * i++;	//will i or i++ be evaluated before? 
+	C doesn't define this, it all depends on the compiler!
+
+"Fetching" a variable mean retrieving it's value from memory. A later change will not
+	affect the fetched value, which is typically stored in the "register" in the CPU
+
+C allows *any* expression to be used as a statement if you append a semi-colon.
+	during i++; the statement executes, and the new value is fetched. its value is discarded,
+	though that new value remains permanent as it will be fetched from memory.
+
+
+#####################################
+# Chapter 5
+#####################################
+
+"Selection Statements" 	#if, switch
+	Allow a program to select a particular execution path from a set of alternatives
+"Iteration Statements" 	#while, do, for
+	Support iteration (looping)
+"Jump statements" 		#break, continue, goto, return
+	Cause an unconditional jump to some other place in the program
+"Compound statement"	#else (see Chapter 6 for more)
+	Groups several statements into a single statement
+"Null Statement"		#empty semi-solon (;)
+	Performs no action
+
+"Relational and Equiality operators" 
+	always return integer values: 0 (false), or 1 (true)
+
+	(i >=j) + (i ==j)
+		is equal to 0, 1, or 2, depending on whether i is less than,
+			greater than, or equal to j. this isn't recommended however as it makes
+			programs hard to understand
+
+"Logical Operators"
+	!	logical negation
+	&&	logical and
+	||	logical or
+
+!exp: 			has the value 1 if expr has the value 0
+exp1 && exp2: 	has the value 1 if the values are both non-zero.
+exp1 || exp2:	has the value 1 if either (or both) has a non-zero value
+	*In all other cases, these operators produce 0*
+
+&&/||: if left is non-zero, they will "short-circuit"
+	Neither will look at the right operators. && will be marked false, || true
+	i > 0 && ++j > 0 will not increment j if i=0
+
+"else" executes only when the "if" expression is 0 (aka not true)
+
+"Conditional Expressions"
+	expr1 ? expr2 : expr3
+
+	Considered a ternary operator, evaluated as "if ? then : else"
+	Parenthesis are often needed to prevent additional expressions being added by mistake
+	i.e. k = (i >= 0 ? i : 0) + j;
+
+	Tempting to use them to reduce returns or else statements:
+	if (i > j )
+		printf("%d\n", i);
+	else
+		printf("%d\n", j);
+	#is equal to:
+	printf("%d\n", i > j ? i : j);
+
+"C89 Boolean (or lack thereof)"
+	C89 lacks Boolean value. you can create an int variable and flag it 0 or 1
+	Better yet, use macro definitions. BOOL will just translate to int:
+	#define TRUE  1
+	#define FALSE 0
+	#define BOOL int
+	BOOL flag = FALSE;
+	if (flag == TRUE)
+
+"C99 Boolean"
+	Included in C99 as an unsigned integer. assigning non-value usually gives it a 1
+
+	_Bool flag;
+	
+	Also includes <stdbool.h> which adds "bool", a macro for _Bool. also adds TRUE/FALSE
+
+"Case"
+	Much cleaner than cascading if statements
+
+	switch (grade) {
+	case 4: printf("Excellent");
+		break;
+	case 3: printf ("Good");
+		break; } etc
+	
+	MUST be used with an integer expression in parentheses. Characters are integers. floats/strings
+		are not.
+
+	switch (expression) {
+		case constant-expression : statements
+
+"Constant Expression"
+	cannot contain variables or function calls. n+10 does not qualify unless n is defined as a constant macro
+	Only one constant expression can follow each case; however, multiple cases may precede statements
+		case 4:  case 3: printf("This will run in both case 3 and 4");
+		//notice they're both on the same line...often done to save space
+	Cannot use range of values (use if instead). without default, will simply bypass switch if no matches
+
+	Omiting break can sometimes be done to purposefully allow all cases below it to apply; usually, though,
+		it's just a coding mistake. To make it clear this was an intentional big-brain move, use a comment:
+		// FALL THROUGH //
+
+
