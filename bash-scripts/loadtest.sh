@@ -46,5 +46,5 @@ ip a | grep eth0 | grep -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | aw
 # Get kubernetes service
 kubectl get svc
 
-// Run Load Test (Locust may be located in ~/.local/bin/locust, which is not in $PATH)
+# Run Load Test (Locust may be located in ~/.local/bin/locust, which is not in $PATH)
 ~/.local/bin/locust --headless --users 1000 --spawn-rate 1 -f load_test.py -H http://10.224.0.4:31453
