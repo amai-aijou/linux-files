@@ -44,7 +44,7 @@ class NginxUser(HttpUser):
 ip a | grep eth0 | grep -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | awk '{print $2}' | cut -d / -f 1
 
 # Get kubernetes service
-kubectl get svc
+kubectl get svc | grep -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | awk '{print $3}'
 
 # Run Load Test (Locust may be located in ~/.local/bin/locust, which is not in $PATH)
 ~/.local/bin/locust --headless --users 1000 --spawn-rate 1 -f load_test.py -H http://10.224.0.4:31453
