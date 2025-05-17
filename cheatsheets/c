@@ -170,9 +170,10 @@ C allows *any* expression to be used as a statement if you append a semi-colon.
 "Relational and Equiality operators" 
 	always return integer values: 0 (false), or 1 (true)
 
-	i >=j is equal to 0, 1, or 2, depending on whether i is less than,
-		greater than, or equal to j. this isn't recommended however as it makes
-		programs hard to understand
+	(i >=j) + (i ==j)
+		is equal to 0, 1, or 2, depending on whether i is less than,
+			greater than, or equal to j. this isn't recommended however as it makes
+			programs hard to understand
 
 "Logical Operators"
 	!	logical negation
@@ -190,5 +191,61 @@ exp1 || exp2:	has the value 1 if either (or both) has a non-zero value
 
 "else" executes only when the "if" expression is 0 (aka not true)
 
+"Conditional Expressions"
+	expr1 ? expr2 : expr3
+
+	Considered a ternary operator, evaluated as "if ? then : else"
+	Parenthesis are often needed to prevent additional expressions being added by mistake
+	i.e. k = (i >= 0 ? i : 0) + j;
+
+	Tempting to use them to reduce returns or else statements:
+	if (i > j )
+		printf("%d\n", i);
+	else
+		printf("%d\n", j);
+	#is equal to:
+	printf("%d\n", i > j ? i : j);
+
+"C89 Boolean (or lack thereof)"
+	C89 lacks Boolean value. you can create an int variable and flag it 0 or 1
+	Better yet, use macro definitions. BOOL will just translate to int:
+	#define TRUE  1
+	#define FALSE 0
+	#define BOOL int
+	BOOL flag = FALSE;
+	if (flag == TRUE)
+
+"C99 Boolean"
+	Included in C99 as an unsigned integer. assigning non-value usually gives it a 1
+
+	_Bool flag;
+	
+	Also includes <stdbool.h> which adds "bool", a macro for _Bool. also adds TRUE/FALSE
+
+"Case"
+	Much cleaner than cascading if statements
+
+	switch (grade) {
+	case 4: printf("Excellent");
+		break;
+	case 3: printf ("Good");
+		break; } etc
+	
+	MUST be used with an integer expression in parentheses. Characters are integers. floats/strings
+		are not.
+
+	switch (expression) {
+		case constant-expression : statements
+
+"Constant Expression"
+	cannot contain variables or function calls. n+10 does not qualify unless n is defined as a constant macro
+	Only one constant expression can follow each case; however, multiple cases may precede statements
+		case 4:  case 3: printf("This will run in both case 3 and 4");
+		//notice they're both on the same line...often done to save space
+	Cannot use range of values (use if instead). without default, will simply bypass switch if no matches
+
+	Omiting break can sometimes be done to purposefully allow all cases below it to apply; usually, though,
+		it's just a coding mistake. To make it clear this was an intentional big-brain move, use a comment:
+		// FALL THROUGH //
 
 
