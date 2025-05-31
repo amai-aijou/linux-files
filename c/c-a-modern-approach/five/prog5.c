@@ -16,7 +16,7 @@ int main(void) {
 	scanf("%f", &income);
 
 	if (income <=0.00) {
-			printf("Get your bum ass off my computer, Jeff!\n");
+			printf("You don't have any money :(\n");
 			return 1;
 	} else if (income > 0.00 && income <= 750.00) {
 			due = 7.50;

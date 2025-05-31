@@ -30,5 +30,9 @@ set t_Co=256
 "   Mode after closing vim
 "   silent !mkdir ~/backups/vim
 
+" Turns on "undofile" backups
+set undofile
+
 " sets backup directory for storing previous files. removes annoying file~
 set backupdir=~/backups/vim
+set undodir=~/backups/vim

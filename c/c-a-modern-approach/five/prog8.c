@@ -25,7 +25,7 @@ int main(void) {
 
 	//handle Out Of Range errors
 	if (inputMinutes < 0 || inputMinutes >= 1440) {
-			printf("Now you fucked up! Now you fucked up. You have fucked up now. now you fucked u-erm, I mean...Out Of Range Error.\n");
+			printf("Now you messed up! Now you messed up. You have messed up now. now you messed- u-erm, I mean...Out Of Range Error.\n");
 			return 1;
 	//check times
 	} else if ((inputMinutes <= 480) || inputMinutes >= 1305) {
