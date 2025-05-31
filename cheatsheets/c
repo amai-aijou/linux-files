@@ -45,7 +45,7 @@ C is built on "tokens": groups of chars that can't be split up without changing 
     printf	(	"Height: %d\n"	,	height	)	;
 
 #####################################
-# Chapter 3 - Formatted Input/Output
+ "Chapter 3 - Formatted Input/Output"
 #####################################
 
 "conversion specification"	placeholder representing a value to be filled during print, ie %d
@@ -89,7 +89,7 @@ C is built on "tokens": groups of chars that can't be split up without changing 
  	
 
 #####################################
-# Chapter 4
+     "Chapter 4 - Expressions"
 #####################################
 
 "Expressions" Formulas that show how to compute a value
@@ -153,7 +153,7 @@ C allows *any* expression to be used as a statement if you append a semi-colon.
 
 
 #####################################
-# Chapter 5
+ "Chapter 5 - Selection Statements"
 #####################################
 
 "Selection Statements" 	#if, switch
@@ -247,5 +247,14 @@ exp1 || exp2:	has the value 1 if either (or both) has a non-zero value
 	Omiting break can sometimes be done to purposefully allow all cases below it to apply; usually, though,
 		it's just a coding mistake. To make it clear this was an intentional big-brain move, use a comment:
 		// FALL THROUGH //
+
+
+#####################################
+ "Chapter 5 - Selection Statements"
+#####################################
+
+
+
+
 
 
