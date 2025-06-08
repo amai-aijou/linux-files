@@ -9,8 +9,7 @@ if [ -e $fileName ]; then
 	echo "File $fileName already exists!"
 else
 	touch $fileName;
-echo "
-/******************************************
+echo "/******************************************
  * Name: $fileName
  * Purpose: 
  * Author: $USER

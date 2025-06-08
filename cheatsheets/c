@@ -250,11 +250,76 @@ exp1 || exp2:	has the value 1 if either (or both) has a non-zero value
 
 
 #####################################
- "Chapter 5 - Selection Statements"
+        "Chapter 6 - Loops" 
 #####################################
 
+"Controlling Expression"
+    Every time a loop body is executed (an "iteration"), the controlling expression is evalued. If true, aka
+        a non-zero value, the loop continues to execute. 
 
+Three kinds of iteration statements (and other useful loop terminology):
 
+"while"		Controlling Expression tested *before* the loop body is executed
+"do"		Controlling Expression tested *after* the loop body is executed
+"for"		Convenient for loops that increment/decrement using a counting variable (i++)
 
+"break"		Jumps out of a loop and transfers control to the next statement after the loop
+"continue"	Skips the rest of a loop iteration (like break, but restarts the loop)
+"goto"		Jumps to any statement within a function (generally poor practice in real-world uses, so I hear)
+"null"		Creates loops with empty bodies
 
+"The While Statement"
+    while	( expression )	statement
+
+    while (i < n)	/* controlling expression */
+	  i = i * 2  	/* loop daddy...I mean body*/
+
+    Braces can create a single compound statement (of course)
+    
+	As the controlling expression is tested before, it's possible the loop may not be executed
+
+	nonzero constants can create (purposefully) inifite loops:
+	    while (1)
+		/* a break, goto, or return is necessary to end the loop */
+
+"%10d%10d"
+    This trick can be used in place of tab to create pretty tables, since it is right-aligned as its a positive number
+
+"The Do Statement"
+	do	statement	while	( expression ) 
+
+"The For Statement"
+	for	( expr1 ; expr2 ; expr3 )	statement
+	
+	- Any and all expressions may be omitted
+    	for (; i > 0; --i)
+	- When the 2nd expression is missing, it defaults to true, and must be terminated in another fashion (or run forever)!
+		for (;;)
+	- Comma expression in 1st/3rd allows for multiple initialization or increment steps. The first value is evaluated and discarded.
+		Only the last value remains, and becomes the value of the entire expression
+C99:
+	- First expression can be replaced by a declaration (and is only visible *within* the loop!) Can declare multiple of same type
+		for (int 1 = 0, j = 0; i < n; i++)
+
+"Pre- vs Post-Increment"
+	The book does not cover this, but listening to engineers speak about the language, pre-increment should always be used
+	    over post-increment because post requires the i++ to be turned into i = i + 1 in memory. small difference that can add up!
+
+"Break"
+	- Transfers control just past the end of a loop (loop is ended)
+	- Only jumps out of the innermost brackets in cases of nested statements
+	- Can be used in Switch statements as well as loops
+
+"Continue"
+	- Transfers control just before the end of a loop (Meaning loop is evaluated again)
+
+"Goto"
+	- Transfers control to any statement in a function, provided that statement has a label
+	- "label" is any identifier placed at the beginning of a statement with a colon (done:)
+	- C99: Goto can't be used to bypass the declaration of a variable-length array
+	- Should be used seldomly (if at all?). break, continue, return, exit are preferred
+	- Can be used to exit a loop from within a subloop/switch statement
+
+"Null"
+	- Statement devoid of symbols except for a semicolon: for (;;), or a blank loop body
 
