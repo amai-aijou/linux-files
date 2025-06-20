@@ -323,3 +323,24 @@ C99:
 "Null"
 	- Statement devoid of symbols except for a semicolon: for (;;), or a blank loop body
 
+
+
+#####################################
+      "Chapter 7 - Basic Types"
+#####################################
+
+"Two Integer Types: Integer and Floating"
+  - Integer types are whole numbers, while floating can have a fractional
+  - Integers: signed (postive/negative), or unsigned. Default Signed
+  
+  "Signed"
+    The sign takes the left-most bit, reducing the available size.
+
+  "Unsigned" 
+    declared as unsigned. Useful for systems programming, and low-level, machine-dependent applications (see Chapter 20)
+
+"Integer Sizes"
+  Short Int -> Unsigned Short Int -> Int -> Unsigned Int -> Long Int -> Unsigned Long Int
+
+  - Other combinations are synonyms for these six types. Can omit Int, as in Unsigned Short, or Long (best practice, some new languages require!)
+  - Order doesn't matter; Unsigned Short Int is identical to Short Unsigned Int
