@@ -344,3 +344,43 @@ C99:
 
   - Other combinations are synonyms for these six types. Can omit Int, as in Unsigned Short, or Long (best practice, some new languages require!)
   - Order doesn't matter; Unsigned Short Int is identical to Short Unsigned Int
+  - Size is relative, and varies by compiler/computer. However, smaller sizes may not be larger than larger sizes. all three could be the same though!
+
+"Integer Constants"
+  - Numbers that appear in the text of a program. Not read, written, or computed. "Integer constants written in Decimal, Octal, or Hexadecimal"
+  - Integers are always stored in binary, regardless of how we write them. You can even mix them.
+  - Decimal cannot start with 0. Octal must start with 0. hex must start wiht 0x
+  - Octal and hex are convenient for low-level programs ( see Chapter 20)
+  - For extremely large constant, compilers can, in an emergency, attempt to use long or even unsigned long int.
+  - To force a compiler to treat a constant as long, follow with the letter L (U for unsigned, can be either order): 15L	0377:	0xfffUL
+
+"Integer Overflow"
+  - When arithmetic performed on int values cannot fit into an int, overflow occurs. 
+  - "Overflow of signed ints is undefined". Overflow of unsigned ints is defined as the number of bits used to store the result.
+
+"Reading and Writing Integers"
+  - in scanf, %d only works for signed integers. %u is used for unsigned, alongside %o (octal) and %x (hexadecimal)
+  - Short Integer: %hd (think 'half'), or %ho, %hu, %hx
+  - Long Integer: %ld	%lo  %lu  %lx
+  - Long Long:    %lld	%llo %llu %llx
+
+"Floating Point"
+  Float			Single-precision
+  Double		Double-Precision
+  Long Double	Extended-precision
+
+  - Float only suitable for precision to a ~one decimel point. double works for more programs. Long Double is rarely used. 
+  - C does not guarantee nor state specific precision for *any* of these.
+  - Constants stored as "double" by default, which are automatically converted to "float" when necessary
+  - Override double default with letter F, ie 57.0F. 57.0L forces constantls into Long Double
+
+"Reading and Writing Floating-Point"
+  - Same as Integers, add l to the wrong, as in %lf, for scanf. do NOT add for printf, simply choose from %e %f %g to properly display
+  - Long double gets a capital L: %Lf
+
+"Chars"
+  - C treats chars as small integers. C connects int and char so strongly, char const are actually int type rather than char! (just some fun trivia)
+    i = 'a';	// i is now 97
+    ch = 65;	// ch is now 'A'
+	ch = ch + 1;// ch is now 'B'
+  - Due to this, "Unsigned chars" exist. If you need to ensure it is one or the other, declare them as signed char, or unsigned char
