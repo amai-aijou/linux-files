@@ -105,4 +105,5 @@ pgrep -l -u $USER
   - "df -i" and "ls -i" both help to check current number
 
 "Summary"
-  Hard links are two directory entries for the same file. A soft link is a file whose content is simply a path to the target file
+  - Hard links are two directory entries for the same file. A soft link is a file whose content is simply a path to the target file
+  - inodes only exist so long as there is at least one link to it in the filesystem. removing the last link deletes the file
