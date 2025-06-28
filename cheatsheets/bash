@@ -82,3 +82,27 @@ pkill -[uGP] 1000
 
 # searches for processes. Can be used to do a "dry run" of a pkill, first
 pgrep -l -u $USER
+
+"Hard Links"
+  - Can only be created for regular files. use "ln" to create
+  - cannot span multiple filesystems
+  - increments the number to the right of permissions in ls command (here seen at 2):
+    # -rw-rw-r--. 2 tcarrigan tcarrigan 12 Aug 29 14:27 link_test
+  - files hard-linked share the same inode number. the data is only removed from disk when all copies are removed
+    # ls -i; 101475714 link_new  101475714 link_test
+
+"Soft Links"
+  - Also known as Symbolic Links. links non-regular and regular files, as symlink is irregular itself
+  - Can span multiple filesystems
+  - "ln -s" is a symbolic link
+  - Deleting the original removes the soft link's ability to share the data, called a "dangling soft link"
+  - Beware when using the cp utility, as "cp --dereference" is required to prevent copying a link, instead of its source data
+
+"inodes"
+  - Index Node. unique identifier for a specific piece of metadata in linux (aka a "file")
+  - Stored in a common table. each fs has its own inodes, and inode numbers cannot be reused by same filesystem (but can for others)
+  - Filesystem ID + Inode number = Unique Identifier
+  - "df -i" and "ls -i" both help to check current number
+
+"Summary"
+  Hard links are two directory entries for the same file. A soft link is a file whose content is simply a path to the target file
