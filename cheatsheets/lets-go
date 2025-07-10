@@ -1,0 +1,21 @@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @               ---------                 @
+# @		          Let's Go!	    			@
+# @               ---------                 @
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#
+
+#####################################
+      "Chapter 2 - Foundations"
+#####################################
+
+"HTTP Matching Patterns"
+  - When an HTTP link ends in a trailing slash, it's known as "Subtree Path Pattern"
+  - Matched (and the corresponding handler called) when the start of a URL matches 
+  - Subtree paths match as if they had wildcards at the end
+  - /html matches /html and /html/foo=bar ... but NOT /html/test
+  - /html/ matches /html/ and /html/foo/bar ... but NOT /html
+  - This is why / is a catch-all; it will match anything
+
+"Path pattern"
+  - /html 

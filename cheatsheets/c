@@ -384,3 +384,13 @@ C99:
     ch = 65;	// ch is now 'A'
 	ch = ch + 1;// ch is now 'B'
   - Due to this, "Unsigned chars" exist. If you need to ensure it is one or the other, declare them as signed char, or unsigned char
+
+"Escape Sequences"
+  - Macros are recommended for escape characters, as they get a bit cryptic, per the book
+  #define ESC '\33'		// ASCII escape character
+
+"Character-Handling Functions"
+  - Convert lower-case letters to upper-case with C's "toupper" library function:
+  ch = toupper(ch);
+
+

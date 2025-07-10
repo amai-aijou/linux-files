@@ -1,0 +1,18 @@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @               ---------                 @
+# @		         GENTOO NOTES				@
+# @               ---------                 @
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#
+
+##### Important Packages #####
+
+"portage"
+  - Gentoo's Package manager. Creates from source
+
+"emerge"
+  - 
+
+"eselect"
+  - Gentoo's common management interface for sysadmin tasks
+  - "eselect news list" and "eselect news read" for reading bulletins
