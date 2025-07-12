@@ -9,13 +9,55 @@
       "Chapter 2 - Foundations"
 #####################################
 
-"HTTP Matching Patterns"
+"Web Application Basics"
+
+  "Handler"
+  - Execute application logic, write HTTP Response Headers
+
+  "Router" ("servemux", in Go terminology)
+  - Stores mappings between URL routing patterns and handlers.
+
+  "Web Server"
+  - Listens for incoming requests. Go handles natively, without nginx etc!
+
+
+"Routing Requests"
+
+  "HTTP Matching Patterns"
   - When an HTTP link ends in a trailing slash, it's known as "Subtree Path Pattern"
   - Matched (and the corresponding handler called) when the start of a URL matches 
   - Subtree paths match as if they had wildcards at the end
   - /html matches /html and /html/foo=bar ... but NOT /html/test
-  - /html/ matches /html/ and /html/foo/bar ... but NOT /html
+  - /html/ matches /html/ and /html/foo/bar
   - This is why / is a catch-all; it will match anything
 
-"Path pattern"
-  - /html 
+ "Restricting Subtrees"
+  - appending {$} prevents subtrees from behaving like wildcard suffixes
+  - /static/{$} will only match /static/
+
+  "Additional servemux features"
+  - Request URL paths are auto-sanitized:
+      /foo//bar/../baz/./ auto-sends a 301 Permanent Redirect to /foo/baz/
+  - Request URL paths with subtrees are auto-redirected:
+      /foo will be redirected to /foo/, even if /foo exists
+
+  "Hostname Matching"
+  - hostnames can be used in route patterns, ie. mux.HandleFunc("foo.example.org/", fooHandler) 
+  - host-specific patterns are always checked before non-host
+
+  "Default servemux"
+  - http.Handle() & http.HandleFunc() register routes without explicitly declaring a servemux
+  - "http.DefaultServeMux": global variable for the default servemux. initialized automatically by Go
+  - Not Recommended! Any 3rd-party package your app imports can register potentially dangerous routes
+
+
+"Wildcard Route Patterns"
+
+  "Wildcard Segments"
+  - Denoted by braces {}, ie mux.HandleFunc("/products/{category}/item", exampleHandler)
+
+  "Precedence and conflicts"
+  - When route patterns overlap in Go, the more specific one wins! If one is a subset of the other, it's preferred
+  - If a route ends with a wildcard and ..., it will match any and all remaining segments of a path:
+      /post/{path...}
+    This allows you to access the entire wildcard portion of the URL via the r.PathValue() method though!
