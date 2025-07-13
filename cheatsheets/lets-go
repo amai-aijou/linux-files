@@ -61,3 +61,6 @@
   - If a route ends with a wildcard and ..., it will match any and all remaining segments of a path:
       /post/{path...}
     This allows you to access the entire wildcard portion of the URL via the r.PathValue() method though!
+
+  "HTTP Method Precedence"
+  - The most specific pattern will still win here, which includes the HTTP method. POST foo/bar will beat foo/bar
