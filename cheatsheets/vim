@@ -1,17 +1,22 @@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @                                         @
-# @				  VIM NOTES					@
+# @				        VIM NOTES				          @
 # @                                         @
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+###########################
+         Movement
+###########################
 
-
-# searches for next instance of letter x in the same line
+# Searches for next instance of letter x in the same line
 fx
 
-#-------------------------
-File Copying and Movement
-#-------------------------#
+# Move to Top of File / Bottom of File / Line number X
+GG / gg / Xgg
+
+###########################
+File Copying and Editing
+###########################
 
 
 #Yank Operator & Scope	Resulting Action
@@ -78,6 +83,7 @@ ctrl-c 	ZQ
   :%s/old/new/gc
 
 #repeat last command in EX mode
+#note: :@ will also work as an EX command
 @:
 
 #open multiple files (switch with :n/:N)
