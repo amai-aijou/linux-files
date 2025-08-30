@@ -391,6 +391,20 @@ C99:
 
 "Character-Handling Functions"
   - Convert lower-case letters to upper-case with C's "toupper" library function:
+  #include <ctype.h>
   ch = toupper(ch);
 
+"Reading and Writing Characters using scanf and printf"
+  - Use %c to denote a single character
+  - scanf doesn't skip white-space before reading a character, so it will return a space as a character unless you use a space:
+      scanf(" %c"
+  - Since it doesn't skip white-space, you can use a simple loop to look for new-line character "\n" in an input line: 
+	  do {
+	  scanf(”%c”, &ch);
+	  } while (ch != ’\n');
 
+"Reading and Writing Characters using getchar and putchar"
+  - getchar() and putchar() are functions to pull the value of a character
+  - Often returns int type, not char. Does not skip whitespace (like scanf). Common function used:
+  - Mixing getchar() and scanf often leads to poor results. Remember scanf will read, then put back whitespace, \n, etc.
+      while ((getchar()) != '\n')
