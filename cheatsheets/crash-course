@@ -1,0 +1,29 @@
+#########################
+#    -  Training  -     #
+#  DevOps Crash Course  #
+#########################
+
+# Cloud Provider Infrastructure
+
+1. Terraform / puppet/ chef/ etc
+2. Host VM (linux)
+3. CI/CD
+4. Docker/Containerd
+5. Kubernetes
+6. Container
+7. Function
+
+Public Cloud services simply offer to manage parts of this:
+
+* EC2: Manages Terraform for you to create a host, you run the rest
+* ECS: Manages Terraform, Host VM, Docker, and k8s for you. You run the container
+* Lamba: Manages Terraform, Host VM, Docker, k8s, and container for you. You run the code inside
+
+# Custom Bash Prompt - Blue
+# change [1;34m\] to choose color:
+# [0;34m] means regular, [1;34m] means bold (0 is purple, 1 is pink, for example) 
+# colors 30-40 should all work, play with it a bit!
+PS1="\[\e[1;34m\][❤\u@\h \W ❤]\$ \[\e[0m\]"
+
+# Custom Bash Prompt - Cyan
+PS1="\[\e[1;36m\][❤\u@\h \W ❤]\$ \[\e[0m\]"
