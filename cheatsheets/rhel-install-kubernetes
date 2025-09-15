@@ -61,6 +61,7 @@ sudo systemctl restart containerd
 sudo systemctl enable containerd
 
 # May or may not need to modify firewalld (will add to this list as ports are needed. k8s will complain about them as you install, easy to tell):
+# --reload will force the --permanent settings to be utilized immediately, without a restart
 sudo firewall-cmd --permanent --add-port=6443/tcp
 sudo firewall-cmd --permanent --add-port=2379-2380/tcp
 sudo firewall-cmd --permanent --add-port=10250/tcp
@@ -69,6 +70,8 @@ sudo firewall-cmd --permanent --add-port=10259/tcp
 sudo firewall-cmd --permanent --add-port=10257/tcp
 sudo firewall-cmd --permanent --add-port=179/tcp
 sudo firewall-cmd --permanent --add-port=4789/udp
+
+sudo firewall-cmd --reload
 
 # Set SELinux in permissive mode (effectively disabling it)
 sudo setenforce 0
