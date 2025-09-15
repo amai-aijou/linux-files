@@ -102,6 +102,21 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+# With this, installation of the primary node is complete; however, the node will not work without a CNI!
+
+
+################################
+# Container Network Interface  #
+#           (CNI)              #
+################################
+
+# Flannel (recommended for smaller, simpler installs. "it just works"):
+https://github.com/flannel-io/flannel
+
+# Calico (Recommended for larger installs, supports Network Policy and other enterprise features)
+https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
+
+
 #######################
 #   Add Worker Node   #
 #######################   
