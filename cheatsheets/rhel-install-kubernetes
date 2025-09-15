@@ -1,3 +1,11 @@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @               ---------                 @
+# @		      Install Kubernetes			@
+# @                  RHEL                   @
+# @               ---------                 @
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
 #update apt's package list, && upgrade the packages to the newest version, skipping the "yes" dialogue
 sudo dnf upgrade
 
