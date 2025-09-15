@@ -4,6 +4,7 @@ sudo dnf upgrade
 #disable swap, as it must be off for any node running k8s (support currently in beta since 1.28)
 #first command disables for current boot, second adds a # to /etc/fstab to comment out the swap table
 sudo swapoff -a
+
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
 #creates a kernel modules-load config file that enables two modules necessary for k8s
@@ -14,6 +15,7 @@ sudo tee /etc/modules-load.d/containerd.conf <<EOF
 overlay
 br_netfilter
 EOF
+
 sudo modprobe overlay
 
 #creates a companion etc/sysctl.conf config file to enable special parameters (see /sys/proc for parameters)
@@ -28,40 +30,41 @@ net.ipv4.ip_forward = 1
 EOF
 
 #loads settings from all sysctl config files (etc/sysctl.conf, etc/sysctl.d, etc) without requiring reboot
-# Alternate command: "sudo sysctl -p"
 sudo sysctl --system
 
-#install common containerd dependencies
-sudo dnf install curl gnupg2 software-properties-common apt-transport-https ca-certificates
-
 #enable docker repository
-sudo dnf config-manager — add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
 #update the package list again, then install containderd
 sudo dnf makecache
+
 sudo dnf install -y containerd.io
 
 #configure containerd. Moves default config to a backup, Creates a new default config, then pipes to file config.toml. Ensures "SystemdCgroup=true" is set
 sudo mv /etc/containerd/config.toml /etc/containerd/config.toml.bak
+
 containerd config default | sudo tee /etc/containerd/config.toml >/dev/null 2>&1
+
 sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 
 #pretty sure you'll figure this one out
 sudo systemctl restart containerd
+
 sudo systemctl enable containerd
 
 # May or may not need to modify firewalld (will add to this list as ports are needed. k8s will complain about them as you install, easy to tell):
-sudo firewall-cmd — permanent — add-port=6443/tcp
-sudo firewall-cmd — permanent — add-port=2379–2380/tcp
-sudo firewall-cmd — permanent — add-port=10250/tcp
-sudo firewall-cmd — permanent — add-port=10251/tcp
-sudo firewall-cmd — permanent — add-port=10259/tcp
-sudo firewall-cmd — permanent — add-port=10257/tcp
-sudo firewall-cmd — permanent — add-port=179/tcp
-sudo firewall-cmd — permanent — add-port=4789/udp
+sudo firewall-cmd --permanent --add-port=6443/tcp
+sudo firewall-cmd --permanent --add-port=2379-2380/tcp
+sudo firewall-cmd --permanent --add-port=10250/tcp
+sudo firewall-cmd --permanent --add-port=10251/tcp
+sudo firewall-cmd --permanent --add-port=10259/tcp
+sudo firewall-cmd --permanent --add-port=10257/tcp
+sudo firewall-cmd --permanent --add-port=179/tcp
+sudo firewall-cmd --permanent --add-port=4789/udp
 
 # Set SELinux in permissive mode (effectively disabling it)
 sudo setenforce 0
+
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 # This overwrites any existing configuration in /etc/yum.repos.d/kubernetes.repo
@@ -76,16 +79,16 @@ exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
 EOF
 
 # install kubectl, kubeadm, kubelet
-sudo apt update
-sudo apt install -y kubelet kubeadm kubectl
-sudo apt-mark hold kubelet kubeadm kubectl
+sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 # Initialize Kube Cluster
 sudo kubeadm init
 
 # Create directory for kubernetes configuration files
 mkdir -p $HOME/.kube
+
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 #######################
