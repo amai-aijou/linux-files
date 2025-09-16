@@ -50,13 +50,16 @@ sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/c
 sudo systemctl restart containerd
 sudo systemctl enable containerd
 
-#Add K8s to the apt package sources list. Downloads the publig GPG key for the k8s apt repo
-echo "deb [signed-by=/etc/apt/keyrinsg/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+# If the directory `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
+# sudo mkdir -p -m 755 /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.34/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+# This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.34/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # install kubectl, kubeadm, kubelet
-sudo apt update
-sudo apt install -y kubelet kubeadm kubectl
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 # Initialize Kube Cluster
@@ -66,6 +69,31 @@ sudo kubeadm init
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# Create directory for kubernetes configuration files
+mkdir -p $HOME/.kube
+
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# With this, installation of the primary node is complete; however, the node will not work without a CNI!
+
+# OPTIONAL: Remove taint from master node [NOTE:replace example.com with the name of your node!]
+kubectl taint node example.com node-role.kubernetes.io/control-plane:NoSchedule
+
+
+################################
+# Container Network Interface  #
+#           (CNI)              #
+################################
+
+# Flannel (recommended for smaller, simpler installs. "it just works"):
+https://github.com/flannel-io/flannel
+
+# Calico (Recommended for larger installs, supports Network Policy and other enterprise features)
+https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
+
 
 #######################
 #   Add Worker Node   #
