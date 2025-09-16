@@ -1,3 +1,12 @@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @               ---------                 @
+# @           Install Kubernetes            @
+# @                  RHEL                   @
+# @               ---------                 @
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+##### VERIFIED WORKING WITH UBUNTU 22.04 LTS AND KUBERNETES 1.34 ON 9/15/2025! #####
+
 #update apt's package list, && upgrade the packages to the newest version, skipping the "yes" dialogue
 sudo apt update && sudo apt upgrade -y
 
