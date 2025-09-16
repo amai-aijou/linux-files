@@ -1,9 +1,11 @@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @               ---------                 @
-# @		      Install Kubernetes			@
+# @           Install Kubernetes            @
 # @                  RHEL                   @
 # @               ---------                 @
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+##### NOTE: IS NOT CURRENTLY WORKING WITH ROCKY 9.6!!! #####
 
 
 #update apt's package list, && upgrade the packages to the newest version, skipping the "yes" dialogue
