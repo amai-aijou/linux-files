@@ -15,6 +15,7 @@ overlay
 br_netfilter
 EOF
 sudo modprobe overlay
+sudo modprobe br_netfilter
 
 #creates a companion etc/sysctl.conf config file to enable special parameters (see /sys/proc for parameters)
 #enables bridged ipv4/6 traffic to be passed to iptables for processing. see:
