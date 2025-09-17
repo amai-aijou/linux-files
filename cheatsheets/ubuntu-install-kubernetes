@@ -71,15 +71,13 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-# Initialize Kube Cluster
-##### IMPORTANT #####
-# Sometimes it's necessary to use a pod-cidr.
-# Difficult to change after deployment
-# take a snapshot before running!
-# Flannel seems to require it, Calico seems to be hit-or-miss
-# sudo kubeadm init --pod-network-cidr=10.244.0.0/16
-#####################
-sudo kubeadm init
+######## USE THIS ONE (Especially you, T!) ########
+# Initialize Kube Cluster - Flannel
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+##################DO NOT USE ######################
+# Initialize Kube Cluster - Calico (not working)
+# sudo kubeadm init
 
 # Create directory for kubernetes configuration files
 mkdir -p $HOME/.kube
@@ -95,7 +93,8 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # With this, installation of the primary node is complete; however, the node will not work without a CNI!
 
-# OPTIONAL: Remove taint from master node [NOTE:replace example.com with the name of your node!]
+# OPTIONAL: Remove taint from master node
+# [NOTE:replace example.com with the name of your node!]
 kubectl taint node example.com node-role.kubernetes.io/control-plane:NoSchedule
 
 
@@ -104,16 +103,17 @@ kubectl taint node example.com node-role.kubernetes.io/control-plane:NoSchedule
 #           (CNI)              #
 ################################
 
+############## USE THIS! ############
 # Flannel (recommended for smaller, simpler installs. "it just works"):
 https://github.com/flannel-io/flannel
 
+############### NOT WORKING (skip to "Install Utilities") ####################
 # Calico (Recommended for larger installs, supports Network Policy and other enterprise features)
 # https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
 
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.30.3/manifests/tigera-operator.yaml
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.30.3/manifests/custom-resources.yaml
-watch kubectl get tigerastatus
-
+# kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.30.3/manifests/tigera-operator.yaml
+# kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.30.3/manifests/custom-resources.yaml
+# watch kubectl get tigerastatus
 
 ################################
 #      Install Utilities       #
@@ -126,7 +126,6 @@ curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --
 echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 sudo apt-get update
 sudo apt-get install helm
-
 
 #######################
 #   Add Worker Node   #
