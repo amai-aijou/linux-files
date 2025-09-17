@@ -108,7 +108,24 @@ kubectl taint node example.com node-role.kubernetes.io/control-plane:NoSchedule
 https://github.com/flannel-io/flannel
 
 # Calico (Recommended for larger installs, supports Network Policy and other enterprise features)
-https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
+# https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart
+
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.30.3/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.30.3/manifests/custom-resources.yaml
+watch kubectl get tigerastatus
+
+
+################################
+#      Install Utilities       #
+################################
+
+# https://helm.sh/docs/intro/install/
+
+sudo apt-get install curl gpg apt-transport-https --yes
+curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
 
 
 #######################
