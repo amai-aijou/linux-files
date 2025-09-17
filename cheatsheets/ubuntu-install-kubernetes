@@ -119,6 +119,7 @@ https://github.com/flannel-io/flannel
 #      Install Utilities       #
 ################################
 
+### Install Helm ###
 # https://helm.sh/docs/intro/install/
 
 sudo apt-get install curl gpg apt-transport-https --yes
@@ -126,6 +127,20 @@ curl -fsSL https://packages.buildkite.com/helm-linux/helm-debian/gpgkey | gpg --
 echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.com/helm-linux/helm-debian/any/ any main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 sudo apt-get update
 sudo apt-get install helm
+
+### Kubernetes Bash auto-complete ###
+source <(kubectl completion bash) # set up autocomplete in bash into the current shell, bash-completion package should be installed first.
+echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+alias k=kubectl
+complete -o default -F __start_kubectl k
+
+### Kubectl Aliases ###
+# https://github.com/ahmetb/kubectl-aliases
+# Add the following to the end of ~/.bashrc:
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+
+# "source" .bashrc file to update it immediately (no need for reboot)
+source ~/.bashrc
 
 #######################
 #   Add Worker Node   #
