@@ -72,6 +72,13 @@ sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 # Initialize Kube Cluster
+##### IMPORTANT #####
+# Sometimes it's necessary to use a pod-cidr.
+# Difficult to change after deployment
+# take a snapshot before running!
+# Flannel seems to require it, Calico seems to be hit-or-miss
+# sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+#####################
 sudo kubeadm init
 
 # Create directory for kubernetes configuration files
