@@ -95,7 +95,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # OPTIONAL: Remove taint from master node
 # [NOTE:replace example.com with the name of your node!]
-kubectl taint node example.com node-role.kubernetes.io/control-plane:NoSchedule
+kubectl taint node example.com node-role.kubernetes.io/control-plane:NoSchedule-
 
 
 ################################
