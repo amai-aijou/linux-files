@@ -1,0 +1,57 @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@              ----------                @
+@     DevOps Continued Learning Path     @
+@              ----------                @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+# Bare Bones Basics
+vim & less (run vimtutor in CLI terminal)
+LFCS #1-10, #14 (tecmint LFCS)
+Bash Keyboard Shortcuts (github - Bash Shortcuts)
+Learn Git basics. Optionally, set up Github, Gitlab, or similar code repository system
+SSL Certificates
+
+# Set up enterprise-ready private Certificate Authority  (OpenSSL Certificate Authority - jamielinux)
+
+Similar to "quick" CA guides, but creates persistence and organizational directories for historical storage
+Use private CA to secure a live kubernetes application
+K8s/CKA/CKS
+
+Install K8s via kubeadm or, "the hard way" as linux processes (k8s.io docs)
+Complete CKA Class labs. Review preceding lesson for each test not passed (kodekloud)
+CKA Ultimate Practice test (killer.sh)
+
+Take Mumshad's first on kodekloud, then transition to killer.sh (free voucher to both tests with CKA exam)
+CKA Certificate
+
+optional may as well, if you don't have yet, and can get an 80%+ on the practice
+If you already have, CKS or another kube cert, while it's fresh in mind
+CI/CD and automation
+
+Install CI/CD software and create a pipeline (jenkins)
+Create a terraform script to automate the linux config customizations you made throughout this guide (terraform)
+SSO, SAML, OAuth
+
+Okta Learning (learning.okta)
+Set up free non-production Okta SSO instance
+Integrate with kubernetes application via SAML
+Scripting
+
+sed/awk deeper dive, if not already done during LFCS (tldp micro-primer) (man -k awk)
+Python (r/learnpython wiki)
+Advanced Bash Scripting (tldp Bash Guide)
+Programming & Development
+
+Full-stack Web Development (Let's Go!)
+
+Postgres/SQL
+Golang
+javascript
+HTML/CSS
+Go! Tour (go.dev)
+Object-Oriented Programming
+
+note: for non-dev paths, suggest learning C++/Java loops, then deciding whether to continue
+C Programming: A Modern Approach (knking)
+C++ for Programmers (Wiley)
+Java (Java MOOC)
