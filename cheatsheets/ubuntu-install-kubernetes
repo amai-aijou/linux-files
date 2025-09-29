@@ -1,5 +1,5 @@
 #include <stdio.h>
-int main(void) {return 0;}
+int main(void) {
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # @              -----------                @
@@ -153,3 +153,4 @@ source ~/.bashrc
 # Kubernetes Join command (IP, Token, Discovery Token are all example values; do not use!)
 kubeadm join 138.197.184.45:6443 --token 72ww2b.6orffywqcf5s4p2z \
         --discovery-token-ca-cert-hash sha256:aafb79cdd45a6e3b3fac01fb3efba0817360b01f90a4b6c3f11567108a36ba67
+}
