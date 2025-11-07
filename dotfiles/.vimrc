@@ -17,7 +17,9 @@ syntax on
 set is hls nu
 
 " uncomment to adjust number of spaces in a tab (default 8)
+" shiftwidth is the same, but for >>, <<, and syntac auto-indent
 set tabstop=4
+set shiftwidth=4
 
 " uncomment to carry current indent to next line
 " set autoindent
