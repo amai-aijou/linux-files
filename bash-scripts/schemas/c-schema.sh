@@ -1,7 +1,5 @@
 #!/bin/bash
 # Script creates new file using input $1, then formats it for C
-# Example: ./c-schema.sh newproject
-# Will create newproject.c with the necessary schema
 
 # Create variable to contatenate filename
 fileName="$1.c"
@@ -11,19 +9,21 @@ if [ -e $fileName ]; then
 	echo "File $fileName already exists!"
 else
 	touch $fileName;
-echo "
-/******************************************
+echo "/******************************************
  * Name: $fileName
  * Purpose: 
- * Author: $USER
+ * Author: amai-aijou
  * Date: $(date)
  ******************************************/
 
 #include <stdio.h>
 
-int main
-{
+/*┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ୨୧ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                       ❤︎︎࣪  M   A   I   N  ❤︎︎࣪    
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ୨୧ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛*/
+int main(void) {
 
 }
+
 " > $fileName;
 fi
