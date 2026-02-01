@@ -9,12 +9,14 @@ if [ -e $fileName ]; then
 	echo "File $fileName already exists!"
 else
 	touch $fileName;
-echo "/******************************************
- * Name: $fileName
- * Purpose: 
- * Author: amai-aijou
- * Date: $(date)
- ******************************************/
+echo "/*┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ୨୧ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+                    ❤︎︎࣪ I N F O R M A T I O N  ❤︎︎࣪    
+  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ୨୧ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+   ❤︎︎࣪ Name: $filename 
+   ❤︎︎࣪ Purpose: 
+   ❤︎︎࣪ Author: amai-aijou
+   ❤︎︎࣪ Date: $(date)
+  ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ */
 
 #include <stdio.h>
 
