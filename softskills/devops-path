@@ -33,6 +33,7 @@
 
 # Suggest learning a bit of Docker, first, though a full class not necessary. Just install and play with it a bit in a VM!
   - Install K8s via kubeadm or, the hard way as linux processes (k8s.io docs)
+    > My github has a step-by-step guide in Linux-Files/Cheatsheets/ubuntu-install-kubernetes
   - Complete Kodekloud Class - Mumshad CKA
     # Whether you plan to get the certificate or not, the CKA classes are by far and away the best way to learn Kubernetes
     > Kodekloud interactive Labs are of paramount importance (These are missing from linuxacademy etc)
