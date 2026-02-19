@@ -1,57 +1,72 @@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@              ----------                @
-@     DevOps Continued Learning Path     @
-@              ----------                @
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+##########################################
+#              ----------                #
+#     DevOps Continued Learning Path     #
+#              ----------                #
+##########################################
 
-# Bare Bones Basics
-vim & less (run vimtutor in CLI terminal)
-LFCS #1-10, #14 (tecmint LFCS)
-Bash Keyboard Shortcuts (github - Bash Shortcuts)
-Learn Git basics. Optionally, set up Github, Gitlab, or similar code repository system
-SSL Certificates
+"The Basics" (SysAdmin / DevOps / Development)
+# Bare Bones Basics. Even if you know Linux already, you'll learn a lot. If you're as good as you think you are, you'll blow through it
+  - Install Linux!
+    > I suggest doing this in a Virtual Machine. Set up a free one like Virtualbox or VMWare (virtualbox is easier for beginners, IMO)
+    > Brand New Users: Ubuntu 22.04
+    > Experienced Users: RHEL 9.6
+    > Stay away from cutting-edge releases, many utilities will have problems (*especially* Kubernetes)
+  - vim & less (run vimtutor in CLI terminal)
+  - Linux Foundation Certified System Administrator Cert (LFCS)
+    # Even if you don't want the Cert, the classes will greatly speed along your familiarity with, and abillity to use, Linux
+    > Complete Tecmint LFCS Classes 1-10, 14 at minimum
+  - Review Github Bash Keyboard Shortcuts page
+  - Learn Git basics. Optionally, set up Github, Gitlab, or similar code repository system
+  - SSL Certificates
 
+
+"Kubernetes" (DevOps)
+# Suggest learning a bit of Docker, first, though a full class not necessary. Just install and play with it a bit in a VM!
+  - Install K8s via kubeadm or, the hard way as linux processes (k8s.io docs)
+  - Complete Kodekloud Class - Mumshad CKA
+    # Whether you plan to get the certificate or not, the CKA classes are by far and away the best way to learn Kubernetes
+    > Kodekloud interactive Labs are of paramount importance (These are missing from linuxacademy etc)
+    > Review preceding lesson for each test not passed 
+  - Complete Kodekloud Class - CKA Ultimate Practice test (killer.sh)
+  - Take Mumshad's first on kodekloud, then transition to killer.sh (free voucher to both tests with CKA exam)
+  - CKA Certificate
+    # If you've come this far, you may as well get it! It's ~$400, and opens the door to $70-170k jobs
+    > If you already have CKS or another kube cert, take this while it's fresh in mind
+
+
+"SSO, SAML, OAuth" (SysAdmin)
+  - Okta Learning (learning.okta)
+  - Set up free non-production Okta SSO instance
+  - Integrate with kubernetes application via SAML
+  - Scripting
+
+"Scripting, parsing, and text processing" (SysAdmin / DevOps / Development)
+  - Advanced Bash Scripting (tldp Bash Guide)
+  - sed/awk deeper dive, if not already done during LFCS (tldp micro-primer) (man -k awk)
+  - Python (r/learnpython wiki)
+  - Programming & Development
+
+"CI/CD and automation" (DevOps)
+  - Install CI/CD software and create a pipeline (jenkins)
+  - Create a terraform script to automate the linux config customizations you made throughout this guide (terraform)
+
+"SSL/TLS" (SysAdmin / DevOps)
 # Set up enterprise-ready private Certificate Authority  (OpenSSL Certificate Authority - jamielinux)
+  - Similar to quick CA guides, but creates persistence and organizational directories for historical storage
+  - Use private CA to secure a live kubernetes application
 
-Similar to "quick" CA guides, but creates persistence and organizational directories for historical storage
-Use private CA to secure a live kubernetes application
-K8s/CKA/CKS
+"Development" (Development)
+  - Let's Go! 
+    > Book that teaches full-stack web development, including:
+      * Postgres/MySQL/SQL
+      * Golang
+      * javascript
+      * HTML/CSS
+  - Go! Tour
+    > go.dev
 
-Install K8s via kubeadm or, "the hard way" as linux processes (k8s.io docs)
-Complete CKA Class labs. Review preceding lesson for each test not passed (kodekloud)
-CKA Ultimate Practice test (killer.sh)
-
-Take Mumshad's first on kodekloud, then transition to killer.sh (free voucher to both tests with CKA exam)
-CKA Certificate
-
-optional may as well, if you don't have yet, and can get an 80%+ on the practice
-If you already have, CKS or another kube cert, while it's fresh in mind
-CI/CD and automation
-
-Install CI/CD software and create a pipeline (jenkins)
-Create a terraform script to automate the linux config customizations you made throughout this guide (terraform)
-SSO, SAML, OAuth
-
-Okta Learning (learning.okta)
-Set up free non-production Okta SSO instance
-Integrate with kubernetes application via SAML
-Scripting
-
-sed/awk deeper dive, if not already done during LFCS (tldp micro-primer) (man -k awk)
-Python (r/learnpython wiki)
-Advanced Bash Scripting (tldp Bash Guide)
-Programming & Development
-
-Full-stack Web Development (Let's Go!)
-
-Postgres/SQL
-Golang
-javascript
-HTML/CSS
-Go! Tour (go.dev)
-Object-Oriented Programming
-
-note: for non-dev paths, suggest learning C++/Java loops, then deciding whether to continue
-C Programming: A Modern Approach (knking)
-C++ for Programmers (Wiley)
-Java (Java MOOC)
+"Backend Development & Object-Oriented Programming" (Development)
+# for non-dev paths, suggest learning C++/Java loops to understand how computer logic works, then deciding whether to continue
+  - C Programming: A Modern Approach (K. N. King)
+  - C++ for Programmers (Wiley)
+  - Java (Java MOOC)
