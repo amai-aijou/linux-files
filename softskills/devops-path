@@ -4,7 +4,11 @@
 #              ----------                #
 ##########################################
 
-"The Basics" (SysAdmin / DevOps / Development)
+#########################
+      "The Basics" 
+ SysAdmin / DevOps / Dev
+#########################
+
 # Bare Bones Basics. Even if you know Linux already, you'll learn a lot. If you're as good as you think you are, you'll blow through it
   - Install Linux!
     > I suggest doing this in a Virtual Machine. Set up a free one like Virtualbox or VMWare (virtualbox is easier for beginners, IMO)
@@ -20,7 +24,11 @@
   - SSL Certificates
 
 
-"Kubernetes" (DevOps)
+#########################
+      "Kubernetes" 
+         DevOps
+#########################
+
 # Suggest learning a bit of Docker, first, though a full class not necessary. Just install and play with it a bit in a VM!
   - Install K8s via kubeadm or, the hard way as linux processes (k8s.io docs)
   - Complete Kodekloud Class - Mumshad CKA
@@ -34,28 +42,52 @@
     > If you already have CKS or another kube cert, take this while it's fresh in mind
 
 
-"SSO, SAML, OAuth" (SysAdmin)
+#########################
+   "SSO, SAML, OAuth" 
+        SysAdmin
+#########################
+# This leans pretty heavy on the Enterprise side of things. Will look amazing on a resume, but it's not very useful for most people
   - Okta Learning (learning.okta)
   - Set up free non-production Okta SSO instance
   - Integrate with kubernetes application via SAML
   - Scripting
 
-"Scripting, parsing, and text processing" (SysAdmin / DevOps / Development)
+#########################
+      "Scripting" 
+ SysAdmin / DevOps / Dev
+#########################
+
   - Advanced Bash Scripting (tldp Bash Guide)
   - sed/awk deeper dive, if not already done during LFCS (tldp micro-primer) (man -k awk)
   - Python (r/learnpython wiki)
   - Programming & Development
 
-"CI/CD and automation" (DevOps)
+
+#########################
+  "CI/CD & automation" 
+         DevOps
+#########################
+
   - Install CI/CD software and create a pipeline (jenkins)
   - Create a terraform script to automate the linux config customizations you made throughout this guide (terraform)
 
-"SSL/TLS" (SysAdmin / DevOps)
+
+#########################
+       "SSL/TLS" 
+   SysAdmin / DevOps
+#########################
+
 # Set up enterprise-ready private Certificate Authority  (OpenSSL Certificate Authority - jamielinux)
   - Similar to quick CA guides, but creates persistence and organizational directories for historical storage
   - Use private CA to secure a live kubernetes application
 
-"Development" (Development)
+
+#########################
+     "Development" 
+    Dev (of course!) 
+#########################
+
+# for non-dev paths, suggest learning C++/Java loops to understand how computer logic works, then deciding whether to continue
   - Let's Go! 
     > Book that teaches full-stack web development, including:
       * Postgres/MySQL/SQL
@@ -64,9 +96,6 @@
       * HTML/CSS
   - Go! Tour
     > go.dev
-
-"Backend Development & Object-Oriented Programming" (Development)
-# for non-dev paths, suggest learning C++/Java loops to understand how computer logic works, then deciding whether to continue
   - C Programming: A Modern Approach (K. N. King)
   - C++ for Programmers (Wiley)
   - Java (Java MOOC)
