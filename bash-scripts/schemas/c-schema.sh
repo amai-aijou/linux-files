@@ -11,7 +11,7 @@ else
 	touch $fileName;
 echo "/*┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
                  ❤︎︎࣪    I N F O R M A T I O N    ❤︎︎࣪    				 
-   ❤︎︎࣪ Name: $filename 
+   ❤︎︎࣪ Name: $1.c
    ❤︎︎࣪ Purpose: 
    ❤︎︎࣪ Author: amai-aijou
    ❤︎︎࣪ Date: $(date)
