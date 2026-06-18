@@ -1,0 +1,21 @@
+FAVORITE ALBUMS
+// A list of some of my favorite albums.
+// Might make a nice dataset for a practice C program or SQL DB
+
+Death Cab For Cutie - Transatlanticism ;
+Emily Haines - Knives Don't Have Your Back ;
+Emily Haines - Choir of the Mind ;
+Emilie Simon - Emilie Simon ;
+Emilie Simon - The Big Machine;
+Final Fantasy VII - Piano Soundtrack
+Final Fantasy IX - Piano Soundtrack
+Hooverphonic - No More Sweet Music ;
+Hooverphonic - Sit Down and Listen To;
+John Contraine - Giant Steps;
+Metric - Old World Underground, Where Are You Now?
+Post Service - Give Up ;
+Rilo Kiley - Take-Offs and Landings ;
+Rilo Kiley - The Execution of All Things ;
+Rilo Kiley - More Adventurous ;
+Shiina Ringo - Muzai Moratorium
+Shiina Ringo - Shouso Strip
