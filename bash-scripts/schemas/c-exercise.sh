@@ -14,7 +14,7 @@ else
 cat << EOF > "$fileName"
 /*┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
                  ❤︎︎࣪    I N F O R M A T I O N    ❤︎︎࣪    				 
-   ❤︎︎࣪ Name: $1
+   ❤︎︎࣪ Name: $1.c
    ❤︎︎࣪ Purpose: 
    ❤︎︎࣪ Author: amai-aijou
    ❤︎︎࣪ Date: $(date)
@@ -25,6 +25,7 @@ cat << EOF > "$fileName"
   ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛*/
 
 #include <stdio.h>
+
 #define COLOR_RED "\033[1;31m"
 #define COLOR_GREEN "\033[1;32m"
 #define COLOR_YELLOW "\033[1;33m"
@@ -44,7 +45,7 @@ int main(void) {
 	printf("-------------------EXERCISE $cleanName-------------------\n\n");
 	printf(COLOR_MAGENTA "Q. \n\n");
 
-	printf(COLOR_CYAN    "(a)\n"
+	printf(COLOR_CYAN    "(a)\n");
 	printf(COLOR_RESET   " Guess: \n"
 					     "Output: \n");
 
