@@ -45,13 +45,17 @@ int main(void) {
 	printf("-------------------EXERCISE $cleanName-------------------\n\n");
 	printf(COLOR_MAGENTA "Q. \n\n");
 
-	printf(COLOR_CYAN    "(a)\n");
-	printf(COLOR_RESET   " Guess: \n"
-					     "Output: \n");
+	printf(COLOR_CYAN    "    unsigned int n;\n"
+			             "    n &= n - 1;\n\n");
+
+	printf(COLOR_MAGENTA "(a)\n");
+	printf(COLOR_CYAN    "  Guess: " COLOR_RESET "...\n\n");
+	printf(COLOR_CYAN    " Output: " COLOR_RESET); 
 
 	printf(COLOR_MAGENTA "(b)\n"
-		   COLOR_CYAN    "    Status: " COLOR_RESET "Legal/Illegal/True/False\n"
-		   COLOR_CYAN    "    Reason: " COLOR_RESET "Answer\n\n");
+		   COLOR_CYAN    "    Status: " COLOR_RESET "True/False\n"
+		   COLOR_CYAN    "    Reason: " COLOR_RESET "...\n\n");
+
 
 	return 0;
 }
