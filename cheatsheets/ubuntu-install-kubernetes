@@ -10,6 +10,14 @@
 #update apt's package list, && upgrade the packages to the newest version, skipping the "yes" dialogue
 sudo apt update && sudo apt upgrade -y
 
+sudo apt install openssh-server
+
+sudo ufw allow ssh
+#sudo ufw disable
+#sudo systemctl stop ufw
+
+sudo hostnamectl set-hostname new-hostname.com
+
 #disable swap, as it must be off for any node running k8s (support currently in beta since 1.28)
 #first command disables for current boot, second adds a # to /etc/fstab to comment out the swap table
 sudo swapoff -a

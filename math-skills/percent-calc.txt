@@ -1,0 +1,39 @@
+****************************************************
+*                                                  *
+* RETROACTIVELY ADDING STOCK HOLDINGS TO PORTFOLIO *
+*                                                  *
+****************************************************
+
+PROBLEM:
+  I need to add a new holding to my inventory,
+  but I do not  know how much I bought each month.
+
+SOLUTION:
+  I can just track the current price,
+  how long the account has been open,
+  and the cumulative percent gain since open
+
+STARTING DATA:
+  45.94% cumulative gain
+  opened 6/4/2024
+  balance $100 
+
+FORMULA:
+  Current Value = Original Value * (1 + Gain)
+
+INSTRUCTIONS:
+  First, run this for the balance:
+    Original Balance: $100
+      $100 / 1.4594 = $68.521
+
+  Next, run this for the stock price:
+    Current Stock Price: $775.30
+      $775.30 / 1.4594 = $531.24
+
+WRAP-UP:
+Write down a buy for SPY on 6/4/2024 @ $68.52
+This will show you the correct balance,
+as well as the correct gain percent over time
+
+NOT INVESTMENT ADVICE, NOR GUARANTEED TO BE ACCURATE!
+MADE SOLELY FOR MY OWN USE AND AS AN EXAMPLE!
